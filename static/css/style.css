@@ -131,7 +131,7 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; position: relat
 .slide { display: none; }
 .slide.active { display: block; animation: fadeEffect 1s ease-in-out; }
 @keyframes fadeEffect { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
-.slide img { width: 100%; display: block; height: 500px; object-fit: cover;}
+.slide img { width: 100%; display: block; height: 500px; object-fit: contain; background: rgba(255, 107, 158, 0.05); }
 .prev, .next {
     cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); padding: 16px;
     color: white; font-weight: bold; font-size: 24px; transition: 0.3s;
@@ -242,7 +242,7 @@ footer { background: var(--dark-pink); color: white; text-align: center; padding
 
     .frame-transition { width: 220px; height: 270px; }
     
-    .slide img { height: 300px; }
+    .slide img { height: 350px; object-fit: contain; }
     .prev, .next { padding: 12px; font-size: 18px; }
 
     .quote-card-container { width: 280px; height: 180px; }
