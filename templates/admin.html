@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: 'Segoe UI', serif;
+            padding: 40px;
+        }
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 { color: #ffafbd; text-align: center; }
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        label { display: block; margin-bottom: 10px; color: #ccc; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        button {
+            background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+            border: none;
+            padding: 12px 30px;
+            color: #333;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 175, 189, 0.5); }
+        .item-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .item-card { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; border: 2px solid #ffafbd; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Birthday Dashboard</h1>
+        
+        <form action="/admin" method="post" enctype="multipart/form-data">
+            <div class="form-section">
+                <h3>General Info</h3>
+                <label>Birthday Name:</label>
+                <input type="text" name="birthday_name" value="{{ data.get('birthday_name', '') }}" placeholder="Her Name">
+                
+                <label>Special Message (Typewriter):</label>
+                <textarea name="birthday_message" rows="4">{{ data.get('birthday_message', '') }}</textarea>
+                <button type="submit">Update Info</button>
+            </div>
+
+            <div class="form-section">
+                <h3>Add to Gallery</h3>
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">Upload Image</button>
+                <div class="item-list">
+                    {% for img in images %}
+                        <div style="position:relative;">
+                            <img src="{{ url_for('static', filename='uploads/' + img) }}" class="item-card">
+                            <a href="/admin/delete_image/{{ img }}" style="position:absolute; top:0; right:0; background:red; color:white; border-radius:50%; width:20px; height:20px; text-align:center; text-decoration:none; font-size:12px;">×</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Add Music</h3>
+                <label>Song Title:</label>
+                <input type="text" name="music_title" placeholder="Song Name">
+                <input type="file" name="music" accept="audio/*">
+                <button type="submit">Upload Music</button>
+                <ul>
+                    {% for song in data.music %}
+                        <li>{{ song.title }} ({{ song.file }}) <a href="/admin/delete_music/{{ loop.index0 }}" style="color:red; text-decoration:none; margin-left:10px;">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <h3>Add Memory</h3>
+                <label>Memory Text:</label>
+                <input type="text" name="memory_text" placeholder="A short caption...">
+                <label>Memory Image (Optional):</label>
+                <input type="file" name="memory_image" accept="image/*">
+                <button type="submit">Add Memory</button>
+                <ul>
+                    {% for memory in data.memories %}
+                        <li>{{ memory.text[:30] }}... <a href="/admin/delete_memory/{{ loop.index0 }}" style="color:red; text-decoration:none; margin-left:10px;">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <h3>Reasons Why She's Special</h3>
+                <label>Reason:</label>
+                <input type="text" name="reason_text" placeholder="e.g. Your smile lights up the room">
+                <button type="submit">Add Reason</button>
+                <ul>
+                    {% for reason in data.get('reasons_why', []) %}
+                        <li>{{ reason }} <a href="/admin/delete_reason/{{ loop.index0 }}" style="color:red; text-decoration:none; margin-left:10px;">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <h3>Timeline Milestones</h3>
+                <label>Event Name:</label>
+                <input type="text" name="timeline_title" placeholder="First Meeting">
+                <label>Date:</label>
+                <input type="text" name="timeline_date" placeholder="May 12, 2023">
+                <button type="submit">Add Milestone</button>
+                <ul>
+                    {% for event in data.get('timeline_events', []) %}
+                        <li>{{ event.title }} ({{ event.date }}) <a href="/admin/delete_timeline/{{ loop.index0 }}" style="color:red; text-decoration:none; margin-left:10px;">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

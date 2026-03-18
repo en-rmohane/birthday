@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mansi! 💖</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- SURPRISE OVERLAY -->
+    <div id="surprise-overlay">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="letter">
+                    <div class="text">Happy<br>Birthday<br>Mansi ❤️</div>
+                </div>
+            </div>
+        </div>
+        <p class="click-text pulse-text" id="clickInstruction">Click the envelope, Mansi! 💖</p>
+    </div>
+
+    <!-- Mouse Trail & Falling Hearts -->
+    <canvas id="fallingHeartsCanvas"></canvas>
+    <canvas id="trailCanvas"></canvas>
+    <div id="balloon-container"></div>
+
+    <div id="main-content">
+        <!-- Smooth Navigation -->
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#slideshow">Slideshow</a>
+            <a href="#quotes">Quotes</a>
+            <a href="#music">Music</a>
+        </nav>
+
+        <!-- Header Section -->
+        <header id="home" class="hero stagger-in">
+            <canvas id="turtleCanvas"></canvas>
+            <div class="hero-content romantic-glow">
+                <h1 class="birthday-title bounce gradient-text">Happy Birthday Mansi! 🎂</h1>
+                <p class="subtitle">You are truly magical ✨</p>
+                <p class="heart-pulse">❤️</p>
+            </div>
+        </header>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <h2 class="stagger-in">📸 Magical Moments</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item stagger-in float-anim" style="--i:1;">
+                    <div class="frame-transition">
+                        <!-- Update src placeholder -->
+                        <img loading="lazy" src="https://picsum.photos/400/500?random=1" alt="Mansi">
+                    </div>
+                </div>
+                <div class="gallery-item stagger-in float-anim" style="--i:2;">
+                    <div class="frame-transition">
+                        <img loading="lazy" src="https://picsum.photos/400/400?random=2" alt="Mansi">
+                    </div>
+                </div>
+                <div class="gallery-item stagger-in float-anim" style="--i:3;">
+                    <div class="frame-transition">
+                        <img loading="lazy" src="https://picsum.photos/500/400?random=3" alt="Mansi">
+                    </div>
+                </div>
+                <div class="gallery-item stagger-in float-anim" style="--i:4;">
+                    <div class="frame-transition">
+                        <img loading="lazy" src="https://picsum.photos/400/450?random=4" alt="Mansi">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slideshow Section -->
+        <section id="slideshow" class="slideshow-section stagger-in">
+            <h2>🎞️ Sweet Memories</h2>
+            <div class="slideshow-container" id="slideshowContainer">
+                <div class="slide fade active"><img loading="lazy" src="https://picsum.photos/800/500?random=10"></div>
+                <div class="slide fade"><img loading="lazy" src="https://picsum.photos/800/500?random=11"></div>
+                <div class="slide fade"><img loading="lazy" src="https://picsum.photos/800/500?random=12"></div>
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a><a class="next"
+                    onclick="changeSlide(1)">&#10095;</a>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="quotes" class="quotes-section">
+            <h2 class="stagger-in">💌 wishes</h2>
+            <div class="quotes-container">
+                <div class="quote-card-container float-anim stagger-in" style="--i:1;">
+                    <div class="quote-card">
+                        <div class="quote-front">
+                            <p>Hover to reveal 💖</p>
+                        </div>
+                        <div class="quote-back">
+                            <p>"Mansi, you are a true gift to everyone. Happy Birthday!"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote-card-container float-anim stagger-in" style="--i:2;">
+                    <div class="quote-card">
+                        <div class="quote-front">
+                            <p>Hover to reveal 💖</p>
+                        </div>
+                        <div class="quote-back">
+                            <p>"Count your life by smiles, not tears. Happy birthday!"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote-card-container float-anim stagger-in" style="--i:3;">
+                    <div class="quote-card">
+                        <div class="quote-front">
+                            <p>Hover to reveal 💖</p>
+                        </div>
+                        <div class="quote-back">
+                            <p>"You light up every room you walk into. Keep shining!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Player Section -->
+        <section id="music" class="music-section">
+            <h2 class="stagger-in">🎵 songs </h2>
+            <div class="music-grid">
+                <div class="custom-player stagger-in" style="--i:1;">
+                    <h3>Song 1</h3>
+                    <div class="vinyl-record" id="vinyl-1"></div>
+                    <div class="controls">
+                        <button class="play-btn" id="play-btn-1" onclick="togglePlay(1)">▶</button>
+                        <div class="progress-bar-container" onclick="seekAudio(event, 1)">
+                            <div class="progress-bar" id="progress-1"></div>
+                        </div>
+                    </div>
+                    <!-- Place static/audio/song1.mp3 -->
+                    <audio id="audio-1" src="{{ url_for('static', filename='audio/song1.mp3') }}"></audio>
+                </div>
+                <!-- Player 2 -->
+                <div class="custom-player stagger-in" style="--i:2;">
+                    <h3>Song 2</h3>
+                    <div class="vinyl-record" id="vinyl-2"></div>
+                    <div class="controls">
+                        <button class="play-btn" id="play-btn-2" onclick="togglePlay(2)">▶</button>
+                        <div class="progress-bar-container" onclick="seekAudio(event, 2)">
+                            <div class="progress-bar" id="progress-2"></div>
+                        </div>
+                    </div>
+                    <!-- Place static/audio/song2.mp3 -->
+                    <audio id="audio-2" src="{{ url_for('static', filename='audio/song2.mp3') }}"></audio>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with endless love for Mansi &copy; <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
