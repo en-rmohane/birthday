@@ -61,22 +61,22 @@
                 <div class="gallery-item stagger-in float-anim" style="--i:1;">
                     <div class="frame-transition">
                         <!-- Update src placeholder -->
-                        <img loading="lazy" src="https://picsum.photos/400/500?random=1" alt="Mansi">
+                        <img loading="lazy" src="{{ url_for('static', filename='images/mansi1.jpg') }}" alt="Mansi">
                     </div>
                 </div>
                 <div class="gallery-item stagger-in float-anim" style="--i:2;">
                     <div class="frame-transition">
-                        <img loading="lazy" src="https://picsum.photos/400/400?random=2" alt="Mansi">
+                        <img loading="lazy" src="{{ url_for('static', filename='images/mansi2.jpg') }}" alt="Mansi">
                     </div>
                 </div>
                 <div class="gallery-item stagger-in float-anim" style="--i:3;">
                     <div class="frame-transition">
-                        <img loading="lazy" src="https://picsum.photos/500/400?random=3" alt="Mansi">
+                        <img loading="lazy" src="{{ url_for('static', filename='images/mansi3.jpg') }}" alt="Mansi">
                     </div>
                 </div>
                 <div class="gallery-item stagger-in float-anim" style="--i:4;">
                     <div class="frame-transition">
-                        <img loading="lazy" src="https://picsum.photos/400/450?random=4" alt="Mansi">
+                        <img loading="lazy" src="{{ url_for('static', filename='images/mansi4.jpg') }}" alt="Mansi">
                     </div>
                 </div>
             </div>
@@ -86,9 +86,9 @@
         <section id="slideshow" class="slideshow-section stagger-in">
             <h2>🎞️ Sweet Memories</h2>
             <div class="slideshow-container" id="slideshowContainer">
-                <div class="slide fade active"><img loading="lazy" src="https://picsum.photos/800/500?random=10"></div>
-                <div class="slide fade"><img loading="lazy" src="https://picsum.photos/800/500?random=11"></div>
-                <div class="slide fade"><img loading="lazy" src="https://picsum.photos/800/500?random=12"></div>
+                <div class="slide fade active"><img loading="lazy" src="{{ url_for('static', filename='images/mansi5.jpg') }}"></div>
+                <div class="slide fade"><img loading="lazy" src="{{ url_for('static', filename='images/mansi1.jpg') }}"></div>
+                <div class="slide fade"><img loading="lazy" src="{{ url_for('static', filename='images/mansi2.jpg') }}"></div>
                 <a class="prev" onclick="changeSlide(-1)">&#10094;</a><a class="next"
                     onclick="changeSlide(1)">&#10095;</a>
             </div>
@@ -164,7 +164,7 @@
         </section>
 
         <footer>
-            <p>Made with endless love for Mansi &copy; <span id="currentYear"></span></p>
+            <p> all rights reserved by Mansi &copy; <span id="currentYear"></span></p>
         </footer>
     </div>
 
