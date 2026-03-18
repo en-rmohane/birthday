@@ -216,3 +216,55 @@ footer { background: var(--dark-pink); color: white; text-align: center; padding
 }
 
 .balloon:hover .balloon-msg { opacity: 1; }
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablets & Small Laptops */
+@media (max-width: 992px) {
+    h2 { font-size: 2.8rem; }
+    .gradient-text { font-size: 4rem; }
+    .subtitle { font-size: 1.8rem; }
+    .slideshow-container { max-width: 90%; }
+    .slide img { height: 400px; }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    h2 { font-size: 2.2rem; }
+    .gradient-text { font-size: 3rem; }
+    .subtitle { font-size: 1.5rem; }
+    .heart-pulse { font-size: 3.5rem; }
+
+    nav { padding: 8px; }
+    nav a { margin: 0 8px; font-size: 0.9rem; }
+
+    section { padding: 4rem 1rem; }
+
+    .frame-transition { width: 220px; height: 270px; }
+    
+    .slide img { height: 300px; }
+    .prev, .next { padding: 12px; font-size: 18px; }
+
+    .quote-card-container { width: 280px; height: 180px; }
+    .quote-front { font-size: 1.2rem; }
+    .quote-back { font-size: 1rem; }
+
+    .custom-player { width: 300px; padding: 1.5rem; }
+    .vinyl-record { width: 100px; height: 100px; }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+    .gradient-text { font-size: 2.5rem; }
+    .subtitle { font-size: 1.3rem; }
+    
+    nav a { margin: 0 5px; font-size: 0.85rem; }
+    
+    .frame-transition { width: 180px; height: 220px; }
+    
+    .envelope-wrapper { width: 260px; height: 170px; }
+    .envelope .letter { width: 220px; height: 130px; }
+    .letter .text { font-size: 1.5rem; }
+    
+    .balloon { width: 50px; height: 65px; }
+}
